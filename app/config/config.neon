@@ -1,0 +1,28 @@
+parameters:
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=czsiki'
+	user: 'czsiki'
+	password: 'czsiki'
+
+application:
+	errorPresenter: Core:Error
+	catchExceptions: true
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 1 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+	- App\Model\NewsManager
+	- App\Model\UsersManager
+	- App\Model\EvaluationsManager
+	- App\Model\TokenManager
+	- App\Model\RolesManager
+	authenticator: App\Model\AuthenticatorManager
+#	adminAuthenticator: App\Model\AuthenticatorManager
+
